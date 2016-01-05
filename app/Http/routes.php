@@ -15,9 +15,8 @@ Route::get('/', function () {
     abort(404);
 });
 
-Route::get('/{id}', function ($id) {
-    $project = \App\Project::find($id);
-	if ( $project ):
+Route::get('/{name}', function ($name) {
+	if ( $project = \App\Project::where(['name' => $name])->get()):
 		dd($project->records());
 	else:
 		abort(404);
