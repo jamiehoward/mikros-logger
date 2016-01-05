@@ -15,15 +15,15 @@ Route::get('/', function () {
     abort(404);
 });
 
-Route::get('/{name}', function ($name) {
+Route::get('{name}', function ($name) {
 	if ( $project = \App\Project::where(['name' => $name])->get()):
-		dd($project->records());
+		return dd($project->records());
 	else:
 		abort(404);
 	endif;
 });
 
-Route::post('/{projectName}', function (Request $request, $projectName) {
+Route::post('{projectName}', function (Request $request, $projectName) {
     if ( ! $project = \App\Project::where(['name' => $projectName])->get() ):
 		$project = new \App\Project;
 		$project->name = $projectName;
