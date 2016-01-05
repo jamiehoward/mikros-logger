@@ -29,7 +29,7 @@ Route::get('{name}', function ($name) {
 
 Route::post('{projectName}', function (Request $request, $projectName) {
 	$project = \App\Project::where(['name' => $projectName])->first();
-	if ( $project ):
+	if ( ! $project ):
 		$project = new \App\Project;
 		$project->name = $projectName;
 		$project->save();
