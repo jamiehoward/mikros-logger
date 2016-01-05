@@ -12,14 +12,14 @@
 */
 
 Route::get('/', function () {
-    abort(404);
+    dd('FAILED');
 });
 
 Route::get('{name}', function ($name) {
 	if ( $project = \App\Project::where(['name' => $name])->get()):
 		return dd($project->records());
 	else:
-		abort(404);
+		return dd('No project found');
 	endif;
 });
 
