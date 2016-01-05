@@ -27,6 +27,10 @@ Route::group(['middleware' => ['web']], function () {
 		dd('FAILED');
 	});
 
+	Route::get('test', function() {
+		return "WORKING";
+	});
+
 	Route::get('project/{name}', function ($name) {
 		if ( $project = \App\Project::where(['name' => $name])->get()):
 			return dd($project->records());
@@ -35,9 +39,6 @@ Route::group(['middleware' => ['web']], function () {
 		endif;
 	});
 
-	Route::get('test', function() {
-		return "WORKING";
-	});
 
 	Route::post('project/{projectName}', function (Request $request, $projectName) {
 		if ( ! $project = \App\Project::where(['name' => $projectName])->get() ):
