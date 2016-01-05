@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('test', function() {
-	return "WORKING";
-});
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -28,14 +24,10 @@ Route::get('test', function() {
 
 Route::group(['middleware' => ['web']], function () {
 	Route::get('/', function () {
-		dd('FAILED');
+		return abort(404);
 	});
 
-	Route::get('test', function() {
-		return "WORKING";
-	});
-
-	Route::get('project/{name}', function ($name) {
+	Route::get('{name}', function ($name) {
 		if ( $project = \App\Project::where(['name' => $name])->get()):
 			return dd($project->records());
 		else:
@@ -44,7 +36,7 @@ Route::group(['middleware' => ['web']], function () {
 	});
 
 
-	Route::post('project/{projectName}', function (Request $request, $projectName) {
+	Route::post('{projectName}', function (Request $request, $projectName) {
 		if ( ! $project = \App\Project::where(['name' => $projectName])->get() ):
 			$project = new \App\Project;
 			$project->name = $projectName;
