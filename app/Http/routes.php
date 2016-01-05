@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('test', function() {
+	return "WORKING";
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
