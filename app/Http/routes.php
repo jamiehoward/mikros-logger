@@ -24,9 +24,15 @@ Route::get('/{id}', function ($id) {
 	endif;
 });
 
-Route::post('/{projectId}', function (Request $request, $projectId) {
-    $record = new \App\Record;
-	$record->project_id = $projectId;
+Route::post('/{projectName}', function (Request $request, $projectName) {
+    if ( ! $project = \App\Project::where(['name' => $projectName])->get() ):
+		$project = new \App\Project;
+		$project->name = $projectName;
+		$project->save();
+	endif;
+
+	$record = new \App\Record;
+	$record->project_id = $project->id;
 	if ( $request->input('data')):
 		$record->data = $request->input('data');
 	endif;
