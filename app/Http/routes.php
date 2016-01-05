@@ -11,6 +11,38 @@
 |
 */
 
+Route::get('/', function () {
+	return abort(404);
+});
+
+Route::get('{name}', function ($name) {
+	if ( $project = \App\Project::where(['name' => $name])->get()):
+		return dd($project->records());
+	else:
+		return dd('No project found');
+	endif;
+});
+
+
+Route::post('{projectName}', function (Request $request, $projectName) {
+	if ( ! $project = \App\Project::where(['name' => $projectName])->get() ):
+		$project = new \App\Project;
+		$project->name = $projectName;
+		$project->save();
+	endif;
+
+	$record = new \App\Record;
+	$record->project_id = $project->id;
+	if ( $request->input('data')):
+		$record->data = $request->input('data');
+	endif;
+	if ( $record->save() ):
+		return \Response::make('Record saved', 200);
+	else:
+		abort(500);
+	endif;
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -23,35 +55,5 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('/', function () {
-		return abort(404);
-	});
 
-	Route::get('{name}', function ($name) {
-		if ( $project = \App\Project::where(['name' => $name])->get()):
-			return dd($project->records());
-		else:
-			return dd('No project found');
-		endif;
-	});
-
-
-	Route::post('{projectName}', function (Request $request, $projectName) {
-		if ( ! $project = \App\Project::where(['name' => $projectName])->get() ):
-			$project = new \App\Project;
-			$project->name = $projectName;
-			$project->save();
-		endif;
-
-		$record = new \App\Record;
-		$record->project_id = $project->id;
-		if ( $request->input('data')):
-			$record->data = $request->input('data');
-		endif;
-		if ( $record->save() ):
-			return \Response::make('Record saved', 200);
-		else:
-			abort(500);
-		endif;
-	});
 });
