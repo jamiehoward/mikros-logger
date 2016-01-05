@@ -26,13 +26,11 @@ Route::get('{name}', function ($name) {
 
 Route::post('{projectName}', function (Request $request, $projectName) {
 	$project = \App\Project::where(['name' => $projectName])->first();
-	if ( ! $project ):
+	if ( $project::count() != 1):
 		$project = new \App\Project;
 		$project->name = $projectName;
 		$project->save();
 	endif;
-
-	dd($project);
 
 	$record = new \App\Record;
 	$record->project_id = $project->id;
