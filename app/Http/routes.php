@@ -32,6 +32,8 @@ Route::post('{projectName}', function (Request $request, $projectName) {
 		$project->save();
 	endif;
 
+	dd($project);
+
 	$record = new \App\Record;
 	$record->project_id = $project->id;
 	if ( $request->input('data')):
