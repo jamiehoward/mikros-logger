@@ -35,6 +35,10 @@ Route::group(['middleware' => ['web']], function () {
 		endif;
 	});
 
+	Route::get('test', function() {
+		return "WORKING";
+	});
+
 	Route::post('project/{projectName}', function (Request $request, $projectName) {
 		if ( ! $project = \App\Project::where(['name' => $projectName])->get() ):
 			$project = new \App\Project;
