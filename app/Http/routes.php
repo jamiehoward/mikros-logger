@@ -15,7 +15,7 @@ Route::get('/', function () {
     dd('FAILED');
 });
 
-Route::get('{name}', function ($name) {
+Route::get('project/{name}', function ($name) {
 	if ( $project = \App\Project::where(['name' => $name])->get()):
 		return dd($project->records());
 	else:
@@ -23,7 +23,7 @@ Route::get('{name}', function ($name) {
 	endif;
 });
 
-Route::post('{projectName}', function (Request $request, $projectName) {
+Route::post('project/{projectName}', function (Request $request, $projectName) {
     if ( ! $project = \App\Project::where(['name' => $projectName])->get() ):
 		$project = new \App\Project;
 		$project->name = $projectName;
