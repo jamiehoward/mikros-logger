@@ -22,5 +22,6 @@ function mikrosLog($data = [], $project = 'testing' ) {
 			'Content-Length: ' . strlen($data))
 	);
 
+	session_write_close();
 	$result = curl_exec($ch);
 }
