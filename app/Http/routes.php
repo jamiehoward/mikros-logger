@@ -38,7 +38,6 @@ Route::post('{projectName}', function (Request $request, $projectName) {
 	$record = new \App\Record;
 	$record->project_id = $project->id;
 	if ( $request->has('data')):
-		dd($request->data);
 		$record->data = serialize(json_decode($request->data));
 	endif;
 	if ( $record->save() ):
