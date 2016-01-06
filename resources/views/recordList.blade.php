@@ -8,7 +8,14 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1>{{ $project->name }}</h1>
+            <h1>{{ $project->name }}
+                {{--<span class="switch">--}}
+                  {{--<input class="switch-input" id="enableLogging" type="checkbox" {{ ( $project->active ? 'checked' : '' ) }} name="active">--}}
+                  {{--<label class="switch-paddle" for="enableLogging">--}}
+                    {{--<span class="show-for-sr">Disable project logging</span>--}}
+                  {{--</label>--}}
+                {{--</span>--}}
+            </h1>
         </div>
 
         <div class="row">

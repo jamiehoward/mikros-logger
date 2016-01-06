@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('{name}', function ($name) {
+	mikrosLog(["GET/$name", "mikros"]);
 	if ( $data['project'] = \App\Project::where(['name' => $name])->first()):
 		return \View::make('recordList', $data);
 	else:
@@ -28,6 +29,7 @@ Route::get('{name}', function ($name) {
 
 
 Route::post('{projectName}', function (Request $request, $projectName) {
+	mikrosLog(["POST/$projectName", "mikros"]);
 	$project = \App\Project::where(['name' => $projectName])->first();
 	if ( ! $project ):
 		$project = new \App\Project;
