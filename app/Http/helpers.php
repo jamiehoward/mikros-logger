@@ -6,22 +6,17 @@
  * Time: 10:52 AM
  */
 
-function mikrosLog($data = [], $project = 'testing' ) {
+function mikrosLog($data = [], $project = 'mikros' ) {
 	//open connection
 	$ch = curl_init();
-	$data = array('data' => $data);
-	$data = json_encode($data);
-
-	//set the url, number of POST vars, POST data
-	curl_setopt($ch,CURLOPT_URL, "http://104.236.251.89/$project");
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-	curl_setopt($ch,CURLOPT_POSTFIELDS, $data);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'Content-Type: application/json',
-			'Content-Length: ' . strlen($data))
-	);
-
-	session_write_close();
-	$result = curl_exec($ch);
+	curl_setopt_array($ch, array(
+		CURLOPT_RETURNTRANSFER => 1,
+		CURLOPT_URL => "http://104.236.251.89/$project",
+		CURLOPT_POST => 1,
+		CURLOPT_POSTFIELDS => [
+			'data' => json_encode($data)
+		]
+	));
+	curl_exec($ch);
+	curl_close($ch);
 }
