@@ -19,10 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('{name}', function ($name) {
-	if ( $project = \App\Project::where(['name' => $name])->first()):
-		foreach ($project->records as $record):
-			echo "<li>$record->created_at : $record->data</li>";
-		endforeach;
+	if ( $data['project'] = \App\Project::where(['name' => $name])->first()):
+		return \View::make('recordList', $data);
 	else:
 		return dd('No project found');
 	endif;
