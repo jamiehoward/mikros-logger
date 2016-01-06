@@ -14,6 +14,7 @@ submitted to that project thus far.
 
 ## PHP implementation example
 
+```php
     <?php
     function mikrosLog($data = [], $project = 'testLog' ) {
 
@@ -29,3 +30,4 @@ submitted to that project thus far.
         curl_exec($ch);
         curl_close($ch);
     }
+```
