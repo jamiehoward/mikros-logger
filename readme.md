@@ -31,5 +31,5 @@ function mikrosLog($data = [], $project = 'testLog' ) {
     curl_close($ch);
 }
 
-mikrosLog(['Users has created a new item', $user->id]);
+mikrosLog(['User has created a new item', $user->id]);
 ```
