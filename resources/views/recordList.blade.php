@@ -12,15 +12,23 @@
         </div>
 
         <div class="row">
-            <table class="table" id="record-list-table">
-                @forelse ($project->records as $record)
-                <tr>
-                    <td>{{ $record->created_at }}</td>
-                    <td>{{ $record->data }}</td>
-                </tr>
-                @empty
-                    <h4 class="info">No records submitted</h4>
-                @endforelse
+            <table class="table display" id="record-list-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($project->records as $record)
+                    <tr>
+                        <td>{{ $record->created_at }}</td>
+                        <td>{{ $record->data }}</td>
+                    </tr>
+                    @empty
+                        <h4 class="info">No records submitted</h4>
+                    @endforelse
+                </tbody>
             </table>
         </div>
     </div>
