@@ -3,6 +3,7 @@
 <head>
     <title>Mikros Logger</title>
     <link rel="stylesheet" href="/assets/css/foundation.min.css" />
+    <link rel="stylesheet" href="/assets/css/jquery.dataTables.min.css" />
 </head>
 <body>
     <div class="container">
@@ -11,7 +12,7 @@
         </div>
 
         <div class="row">
-            <table class="table">
+            <table class="table" id="record-list-table">
                 @forelse ($project->records as $record)
                 <tr>
                     <td>{{ $record->created_at }}</td>
@@ -26,5 +27,11 @@
 
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/foundation.min.js"></script>
+    <script src="/assets/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function(){
+            $("#record-list-table").DataTable();
+        })
+    </script>
 </body>
 </html>
