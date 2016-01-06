@@ -14,18 +14,18 @@ submitted to that project thus far.
 
 ## PHP implementation example
 
-`<?php
+    <?php
     function mikrosLog($data = [], $project = 'testLog' ) {
 
-    $ch = curl_init();
-    curl_setopt_array($ch, array(
-         CURLOPT_RETURNTRANSFER => 1,
-         CURLOPT_URL => "http://example.com/$project",
-         CURLOPT_POST => 1,
-         CURLOPT_POSTFIELDS => [
-             'data' => json_encode($data)
-         ]
-    ));
-    curl_exec($ch);
-    curl_close($ch);
-}`
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => "http://example.com/$project",
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => [
+                'data' => json_encode($data)
+            ]
+        ));
+        curl_exec($ch);
+        curl_close($ch);
+    }
